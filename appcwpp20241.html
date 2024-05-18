@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<button type="button" onclick="sendRequest();">Generar XHR</button>
+	<ul id="listPerson"></ul>
+
+	<script>
+		function sendRequest() {
+			var xhttp = new XMLHttpRequest();
+
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var response = JSON.parse(this.responseText);
+					var htmlTemp = '';
+
+					response.forEach((element, index) => {
+						htmlTemp += '<li>' + element + '</li>';
+					});
+
+					document.getElementById('listPerson').innerHTML += htmlTemp;
+				}
+			};
+
+			xhttp.open('GET', 'http://localhost/apirfpp20241/public/data', true);
+
+			xhttp.send();
+		}
+	</script>
+</body>
+</html>
