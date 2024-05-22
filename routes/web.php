@@ -2,18 +2,16 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Route::get('/data', function() {
-    $data = [
-        'Kevin Arnold',
-        'Alex Lancho',
-        'Darcy',
-        'Henry',
-        'Lupe',
-        'Michael'
-    ];
+	$data = [];
 
-    return response()->json($data);
+	for($i = 0; $i < 50000000; $i++) {
+		$data[] = $i;
+	}
+
+	return response()->json($data);
 });
+?>
